@@ -12,7 +12,12 @@
  */
 export function getCohort(student) {
   // TODO
+  return student.cohort;
 }
+
+// console.log(getCohort({ cohort: 2012, name: "Alice" }));
+// console.log(getCohort({ cohort: 1937, name: "Bob" }));
+// console.log(getCohort({ cohort: 3476, name: "Charlie" }));
 
 /**
  * @typedef {{cohort: number, name: string}} Student
@@ -31,7 +36,24 @@ export function getCohort(student) {
  */
 export function sortStudents(studentA, studentB) {
   // TODO
+  if (studentA.name < studentB.name) {
+    return studentA;
+  } else if (studentA.name > studentB.name) {
+    return studentB;
+  } else {
+    return studentA;
+  }
 }
+
+// console.log(
+//   sortStudents({ cohort: 1, name: "Alice" }, { cohort: 1, name: "Bob" }),
+// );
+// console.log(
+//   sortStudents({ cohort: 1, name: "Bob" }, { cohort: 1, name: "Alice" }),
+// );
+// console.log(
+//   sortStudents({ cohort: 1, name: "Alice" }, { cohort: 2, name: "Alice" }),
+// );
 
 /**
  * @typedef {{color: string, icon: string}} Flag
@@ -48,7 +70,15 @@ export function sortStudents(studentA, studentB) {
  */
 export function makeFlag(color, icon) {
   // TODO
+  const Flag = {};
+  Flag.color = color;
+  Flag.icon = icon;
+  return Flag;
 }
+
+// console.log(makeFlag("red", "circle"));
+// console.log(makeFlag("blue", "square"));
+// console.log(makeFlag("yellow", "triangle"));
 
 /**
  * @typedef {{value: number}} Count
@@ -64,7 +94,12 @@ export function makeFlag(color, icon) {
  */
 export function increment(count) {
   // TODO
+  return count.value + 1;
 }
+
+// console.log(increment({ value: 1 }));
+// console.log(increment({ value: 0 }));
+// console.log(increment({ value: -5 }));
 
 /**
  * @typedef {{x: number, y: number}} Location
@@ -91,7 +126,14 @@ export function increment(count) {
  */
 export function getTaxicabDistance(from, to) {
   // TODO
+  const deltaX = Math.abs(from.x - to.x);
+  const deltaY = Math.abs(from.y - to.y);
+  return deltaX + deltaY;
 }
+
+// console.log(getTaxicabDistance({ x: 0, y: 0 }, { x: 3, y: 4 }));
+// console.log(getTaxicabDistance({ x: -1, y: -2 }, { x: 1, y: 2 }));
+// console.log(getTaxicabDistance({ x: 5, y: 5 }, { x: 5, y: 5 }));
 
 /**
  * @typedef {{name: string, isHerbivore: boolean}} Animal
@@ -107,7 +149,21 @@ export function getTaxicabDistance(from, to) {
  */
 export function getHerbivores(animals) {
   // TODO
+  for (let i = 0; i < animals.length; i++)
+    if (animals[i].isHerbivore == false) {
+      animals.splice(i, 1);
+    }
+  return animals;
 }
+
+// console.log(
+//   getHerbivores([
+//     { name: "Cow", isHerbivore: true },
+//     { name: "Lion", isHerbivore: false },
+//   ]),
+// );
+// console.log(getHerbivores([]));
+// console.log(getHerbivores([{ name: "Rabbit", isHerbivore: true }]));
 
 /**
  * @typedef {{name: string, isCarnivore: boolean}} Animal
@@ -123,7 +179,21 @@ export function getHerbivores(animals) {
  */
 export function getCarnivoreNames(animals) {
   // TODO
+  for (let i = 0; i < animals.length; i++)
+    if (animals[i].isCarnivore == false) {
+      animals.splice(i, 1);
+    }
+  return animals;
 }
+
+// console.log(
+//   getCarnivoreNames([
+//     { name: "Lion", isCarnivore: true },
+//     { name: "Cow", isCarnivore: false },
+//   ]),
+// );
+// console.log(getCarnivoreNames([]));
+// console.log(getCarnivoreNames([{ name: "Wolf", isCarnivore: true }]));
 
 /**
  * @typedef {{name: string, quantity: number, price: number}} Item
@@ -144,7 +214,21 @@ export function getCarnivoreNames(animals) {
  */
 export function getTotalCost(cart) {
   // TODO
+  let total = 0;
+  for (let i = 0; i < cart.length; i++) {
+    total = total + cart[i].price * cart[i].quantity;
+  }
+  return total;
 }
+
+// console.log(
+//   getTotalCost([
+//     { name: "Hourglass", quantity: 2, price: 3.12 },
+//     { name: "Comb", quantity: 1, price: 2.5 },
+//   ]),
+// );
+// console.log(getTotalCost([]));
+// console.log(getTotalCost([{ name: "Notebook", quantity: 0, price: 5 }]));
 
 /**
  * Zip is an operation that merges two arrays into a single object.
@@ -164,7 +248,18 @@ export function getTotalCost(cart) {
  */
 export function zip(keys, values) {
   // TODO
+  const obj = {};
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
+    const value = values[i];
+    obj[key] = value;
+  }
+  return obj;
 }
+
+// console.log(zip(["a", "b"], [1, 2]));
+// console.log(zip([], []));
+// console.log(zip(["x"], ["x"]));  //I'm getting double quotations here for the value instead of single quotes. Is that right?
 
 /**
  * @param {string} word
@@ -180,4 +275,16 @@ export function zip(keys, values) {
  */
 export function countCharacters(word) {
   // TODO
+  const obj = {};
+  for (let i = 0; i < word.length; i++) {
+    const key = word[i];
+    if (key in obj) {
+      obj[key] = obj[key] + 1;
+    } else obj[key] = 1;
+  }
+  return obj;
 }
+
+// console.log(countCharacters("hello"));
+// console.log(countCharacters(""));
+// console.log(countCharacters("aAa"));
